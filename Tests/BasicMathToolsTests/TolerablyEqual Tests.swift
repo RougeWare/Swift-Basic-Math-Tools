@@ -32,8 +32,8 @@ final class TolerablyEqual_Tests: XCTestCase {
     
     func testTildeDoubleEquals_Float64() {
         
-        XCTAssertFalse(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1  == 1)
-        XCTAssertTrue (0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 ~== 1)
+        XCTAssertFalse(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1  == 1.0)
+        XCTAssertTrue (0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 ~== 1.0)
         
         XCTAssertFalse(2  == sqrt(2) * sqrt(2))
         XCTAssertTrue (2 ~== sqrt(2) * sqrt(2))
