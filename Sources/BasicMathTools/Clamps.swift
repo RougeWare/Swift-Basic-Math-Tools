@@ -17,6 +17,7 @@ import Foundation
 ///   - max:   The highest possible returned value
 ///
 /// - Returns: `value`, clamped to be between `min` (inclusive) and `max` (inclusive)
+@inline(__always)
 public func clamp <Value: Comparable> (min: Value, value: Value, max: Value) -> Value {
     Swift.max(min, Swift.min(value, max))
 }
@@ -32,6 +33,7 @@ public extension Comparable {
     ///   - max:   The highest possible returned value
     ///
     /// - Returns: this value, clamped to be between `min` (inclusive) and `max` (inclusive)
+    @inline(__always)
     func clamped(min: Self, max: Self) -> Self {
         clamp(min: min, value: self, max: max)
     }
@@ -42,6 +44,7 @@ public extension Comparable {
     /// - Parameter range: The range of possible values to be returned
     ///
     /// - Returns: this value, clamped to be between `range.lowerBound` (inclusive) and `range.upperBound` (inclusive)
+    @inline(__always)
     func clamped(within range: ClosedRange<Self>) -> Self {
         clamped(min: range.lowerBound, max: range.upperBound)
     }
