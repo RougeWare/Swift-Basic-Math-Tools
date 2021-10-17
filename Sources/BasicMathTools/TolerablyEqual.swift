@@ -1,6 +1,6 @@
 //
 //  Equality with tolerance.swift
-//  
+//  BasicMathTools
 //
 //  Created by Ben Leggiero on 2020-08-02.
 //
