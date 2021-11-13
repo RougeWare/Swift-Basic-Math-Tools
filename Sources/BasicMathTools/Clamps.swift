@@ -14,9 +14,24 @@ import Foundation
 /// - Parameters:
 ///   - min:   The lowest possible returned value
 ///   - value: The value to be clamped
-///   - max:   The highest possible returned value
+///   - max:   The highest possible returned value (inclusive)
 ///
 /// - Returns: `value`, clamped to be between `min` (inclusive) and `max` (inclusive)
+@inline(__always)
+public func clamp <Value: Comparable> (min: Value, value: Value, max: Value) -> Value {
+    Swift.max(min, Swift.min(value, max))
+}
+
+
+
+/// Returns the given `value`, or `min` if it's less than `min`, or `max` if it's greater than or equal to `max`
+///
+/// - Parameters:
+///   - min:   The lowest possible returned value
+///   - value: The value to be clamped
+///   - max:   The value above the highest possible returned value (exclusive)
+///
+/// - Returns: `value`, clamped to be between `min` (inclusive) and `max` (exclusive)
 @inline(__always)
 public func clamp <Value: Comparable> (min: Value, value: Value, max: Value) -> Value {
     Swift.max(min, Swift.min(value, max))
