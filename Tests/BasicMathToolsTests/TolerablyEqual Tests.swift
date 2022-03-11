@@ -44,41 +44,121 @@ final class TolerablyEqual_Tests: XCTestCase {
     }
     
     
+    func testDefaultTolerance_Float32() {
+        
+        XCTAssertEqual(Float32.defaultTolerance, 0.0001)
+        
+        XCTAssertFalse(5 ~== 4 as Float32)
+        XCTAssertFalse(5 ~== 4.9 as Float32)
+        XCTAssertFalse(5 ~== 4.99 as Float32)
+        XCTAssertFalse(5 ~== 4.999 as Float32)
+        XCTAssertFalse(5 ~== 4.9999 as Float32)
+        XCTAssertTrue(5 ~== 4.99999 as Float32)
+        XCTAssertTrue(5 ~== 4.999999 as Float32)
+        XCTAssertTrue(5 ~== 5 as Float32)
+        XCTAssertTrue(5 ~== 5.000001 as Float32)
+        XCTAssertTrue(5 ~== 5.00001 as Float32)
+        XCTAssertFalse(5 ~== 5.0001 as Float32)
+        XCTAssertFalse(5 ~== 5.001 as Float32)
+        XCTAssertFalse(5 ~== 5.01 as Float32)
+        XCTAssertFalse(5 ~== 5.1 as Float32)
+        XCTAssertFalse(5 ~== 6 as Float32)
+        
+        XCTAssertFalse(5 ~== 4.9998 as Float32)
+        XCTAssertFalse(5 ~== 5.0002 as Float32)
+        
+        Float32.defaultTolerance = 0.1
+        
+        XCTAssertEqual(Float32.defaultTolerance, 0.1)
+        XCTAssertTrue(5 ~== 5.0000001 as Float32)
+        XCTAssertTrue(5 ~== 5.000001 as Float32)
+        XCTAssertTrue(5 ~== 5.00001 as Float32)
+        XCTAssertTrue(5 ~== 5.0001 as Float32)
+        XCTAssertTrue(5 ~== 5.001 as Float32)
+        XCTAssertTrue(5 ~== 5.01 as Float32)
+        XCTAssertTrue(5 ~== 5.1 as Float32)
+        XCTAssertFalse(5 ~== 6 as Float32)
+    }
+    
+    
     func testDefaultTolerance_Float64() {
         
         XCTAssertEqual(Float64.defaultTolerance, 0.00001)
         
-        XCTAssertFalse(5 ~== 4)
-        XCTAssertFalse(5 ~== 4.9)
-        XCTAssertFalse(5 ~== 4.99)
-        XCTAssertFalse(5 ~== 4.999)
-        XCTAssertFalse(5 ~== 4.9999)
-        XCTAssertTrue(5 ~== 4.99999)
-        XCTAssertTrue(5 ~== 4.999999)
-        XCTAssertTrue(5 ~== 5)
-        XCTAssertTrue(5 ~== 5.000001)
-        XCTAssertTrue(5 ~== 5.00001)
-        XCTAssertFalse(5 ~== 5.0001)
-        XCTAssertFalse(5 ~== 5.001)
-        XCTAssertFalse(5 ~== 5.01)
-        XCTAssertFalse(5 ~== 5.1)
-        XCTAssertFalse(5 ~== 6)
+        XCTAssertFalse(5 ~== 4 as Float64)
+        XCTAssertFalse(5 ~== 4.9 as Float64)
+        XCTAssertFalse(5 ~== 4.99 as Float64)
+        XCTAssertFalse(5 ~== 4.999 as Float64)
+        XCTAssertFalse(5 ~== 4.9999 as Float64)
+        XCTAssertTrue(5 ~== 4.99999 as Float64)
+        XCTAssertTrue(5 ~== 4.999999 as Float64)
+        XCTAssertTrue(5 ~== 5 as Float64)
+        XCTAssertTrue(5 ~== 5.000001 as Float64)
+        XCTAssertTrue(5 ~== 5.00001 as Float64)
+        XCTAssertFalse(5 ~== 5.0001 as Float64)
+        XCTAssertFalse(5 ~== 5.001 as Float64)
+        XCTAssertFalse(5 ~== 5.01 as Float64)
+        XCTAssertFalse(5 ~== 5.1 as Float64)
+        XCTAssertFalse(5 ~== 6 as Float64)
         
-        XCTAssertFalse(5 ~== 4.99998)
-        XCTAssertFalse(5 ~== 5.00002)
+        XCTAssertFalse(5 ~== 4.99998 as Float64)
+        XCTAssertFalse(5 ~== 5.00002 as Float64)
         
         Float64.defaultTolerance = 0.1
         
         XCTAssertEqual(Float64.defaultTolerance, 0.1)
-        XCTAssertTrue(5 ~== 5.0000001)
-        XCTAssertTrue(5 ~== 5.000001)
-        XCTAssertTrue(5 ~== 5.00001)
-        XCTAssertTrue(5 ~== 5.0001)
-        XCTAssertTrue(5 ~== 5.001)
-        XCTAssertTrue(5 ~== 5.01)
-        XCTAssertTrue(5 ~== 5.1)
-        XCTAssertFalse(5 ~== 6)
+        XCTAssertTrue(5 ~== 5.0000001 as Float64)
+        XCTAssertTrue(5 ~== 5.000001 as Float64)
+        XCTAssertTrue(5 ~== 5.00001 as Float64)
+        XCTAssertTrue(5 ~== 5.0001 as Float64)
+        XCTAssertTrue(5 ~== 5.001 as Float64)
+        XCTAssertTrue(5 ~== 5.01 as Float64)
+        XCTAssertTrue(5 ~== 5.1 as Float64)
+        XCTAssertFalse(5 ~== 6 as Float64)
     }
+    
+    
+    #if !arch(arm64)
+    func testDefaultTolerance_Float80() {
+        
+        XCTAssertEqual(Float80.defaultTolerance, 0.000001)
+        
+        XCTAssertFalse(5 ~== 4 as Float80)
+        XCTAssertFalse(5 ~== 4.9 as Float80)
+        XCTAssertFalse(5 ~== 4.99 as Float80)
+        XCTAssertFalse(5 ~== 4.999 as Float80)
+        XCTAssertFalse(5 ~== 4.9999 as Float80)
+        XCTAssertFalse(5 ~== 4.99999 as Float80)
+        XCTAssertFalse(5 ~== 4.999999 as Float80)
+        XCTAssertTrue(5 ~== 4.9999999 as Float80)
+        XCTAssertTrue(5 ~== 4.99999999 as Float80)
+        XCTAssertTrue(5 ~== 5 as Float80)
+        XCTAssertTrue(5 ~== 5.00000001 as Float80)
+        XCTAssertTrue(5 ~== 5.0000001 as Float80)
+        XCTAssertFalse(5 ~== 5.000001 as Float80)
+        XCTAssertFalse(5 ~== 5.00001 as Float80)
+        XCTAssertFalse(5 ~== 5.0001 as Float80)
+        XCTAssertFalse(5 ~== 5.001 as Float80)
+        XCTAssertFalse(5 ~== 5.01 as Float80)
+        XCTAssertFalse(5 ~== 5.1 as Float80)
+        XCTAssertFalse(5 ~== 6 as Float80)
+        
+        XCTAssertFalse(5 ~== 4.999998 as Float80)
+        XCTAssertFalse(5 ~== 5.009002 as Float80)
+        
+        Float80.defaultTolerance = 0.1
+        
+        XCTAssertEqual(Float80.defaultTolerance, 0.1)
+        XCTAssertTrue(5 ~== 5.0000001 as Float80)
+        XCTAssertTrue(5 ~== 5.000001 as Float80)
+        XCTAssertTrue(5 ~== 5.00001 as Float80)
+        XCTAssertTrue(5 ~== 5.0001 as Float80)
+        XCTAssertTrue(5 ~== 5.001 as Float80)
+        XCTAssertTrue(5 ~== 5.01 as Float80)
+        XCTAssertTrue(5 ~== 5.1 as Float80)
+        XCTAssertFalse(5 ~== 6 as Float80)
+    }
+    #endif
     
     
     static var allTests = [
