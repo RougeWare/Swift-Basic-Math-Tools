@@ -83,7 +83,7 @@ public extension TolerablyEqual
 extension CGFloat: TolerablyEqual { public static var defaultTolerance = CGFloat(CGFloat.NativeType.defaultTolerance) }
 extension Float32: TolerablyEqual { public static var defaultTolerance: Float32 = 0.0001 }
 extension Float64: TolerablyEqual { public static var defaultTolerance: Float64 = 0.00001 }
-#if !arch(arm64)
+#if arch(x86_64) && os(macOS)
 extension Float80: TolerablyEqual { public static var defaultTolerance: Float80 = 0.000001 }
 #endif
 

@@ -118,7 +118,7 @@ final class TolerablyEqual_Tests: XCTestCase {
     }
     
     
-    #if !arch(arm64)
+    #if arch(x86_64) && os(macOS)
     func testDefaultTolerance_Float80() {
         
         XCTAssertEqual(Float80.defaultTolerance, 0.000001)
