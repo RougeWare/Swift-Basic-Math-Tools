@@ -4,9 +4,38 @@ Some basic tools for doing math in Swift
 
 
 
-# `TolerablyEqual` #
+# Wrapping #
 
-This is a protocol that is applied to all the language's built-in signed numbers, but which can be applied to anything, which lets you compare two values for equality, within a certain tolerance.
+This allows any number to be wrapped within a range of numbers.
+
+For example, with a range of floats from `3..<5`, here's how the numbers from `-10` to `10` would wrap:
+
+![A chart depicting a sawtooth-style wrapping of numbers, 3.0 through 4.9, repeating left to right](https://i.imgur.com/a8V6kta.png)
+
+The syntax is really simple:
+
+```swift
+value.wrapped(within: range)
+```
+
+So for the above example, you might do:
+```swift
+value.wrapped(within: 3..<5)
+```
+
+You can also use the global function if that makes more sense for your software:
+
+```swift
+wrap(min: 3, value: value, max: 5)
+```
+
+
+
+# Tolerable Equality #
+
+This allows you to compare two values for equality, within a certain tolerance!
+
+This is done with a protocol that is already applied to all the language's built-in signed numbers, but which can be applied to anything.
 
 Let's look at this classic example:
 ```swift
