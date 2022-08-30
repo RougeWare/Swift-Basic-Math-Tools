@@ -79,7 +79,7 @@ public func wrap <Value: Wrappable> (min: Value, value: Value, max: Value) -> Va
 
 // MARK: - Default Conformance
 
-public extension Wrappable where Self: AdditiveArithmetic, Self: ExpressibleByIntegerLiteral {
+public extension Wrappable where Self: AdditiveArithmetic {
     
     func wrapped(within range: Range<Self>) -> Self {
         guard !range.contains(self) else {
@@ -90,7 +90,7 @@ public extension Wrappable where Self: AdditiveArithmetic, Self: ExpressibleByIn
 
         let baseResult = (self - range.lowerBound).mod(breadth)
 
-        if baseResult < 0 {
+        if baseResult < .zero {
             return range.lowerBound + baseResult + breadth
         }
         else {

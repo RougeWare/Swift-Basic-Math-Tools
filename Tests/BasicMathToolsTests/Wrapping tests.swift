@@ -290,31 +290,31 @@ final class Wrapping_Tests: XCTestCase {
         XCTAssertEqual(38, ( 98).wrapped(within: 30..<50))
         XCTAssertEqual(39, ( 99).wrapped(within: 30..<50))
         
-        guard #available(macOS 12.0, *) else {
-            return
-        }
-
-        let testRange: Range<CGFloat> = 3..<5
-
-        var tests: [(base: CGFloat, wrapped: CGFloat)] = []
-
-        let ranges: [(integer: [Int], negative: Bool, fraction: [Int])] = [
-            (integer:      (0...9).reversed(), negative: true,       (0...9).reversed()),
-            (integer: Array(0...9),            negative: false, Array(0...9)           ),
-        ]
-
-        for range in ranges {
-            for integer in range.integer {
-                for fraction in range.fraction {
-                    let base = try! CGFloat("\(range.negative ? "-" : "")\(integer).\(fraction)", format: FloatingPointFormatStyle())
-                    tests.append((base: base, wrapped: base.wrapped(within: testRange)))
-                }
-            }
-        }
-
-        let csv = tests.map { "\($0.base),\($0.wrapped)" }.joined(separator: "\n")
-        NSPasteboard.general.declareTypes([.string], owner: nil)
-        NSPasteboard.general.setString(csv, forType: .string)
+//        guard #available(macOS 12.0, *) else {
+//            return
+//        }
+//
+//        let testRange: Range<CGFloat> = 3..<5
+//
+//        var tests: [(base: CGFloat, wrapped: CGFloat)] = []
+//
+//        let ranges: [(integer: [Int], negative: Bool, fraction: [Int])] = [
+//            (integer:      (0...9).reversed(), negative: true,       (0...9).reversed()),
+//            (integer: Array(0...9),            negative: false, Array(0...9)           ),
+//        ]
+//
+//        for range in ranges {
+//            for integer in range.integer {
+//                for fraction in range.fraction {
+//                    let base = try! CGFloat("\(range.negative ? "-" : "")\(integer).\(fraction)", format: FloatingPointFormatStyle())
+//                    tests.append((base: base, wrapped: base.wrapped(within: testRange)))
+//                }
+//            }
+//        }
+//
+//        let csv = tests.map { "\($0.base),\($0.wrapped)" }.joined(separator: "\n")
+//        NSPasteboard.general.declareTypes([.string], owner: nil)
+//        NSPasteboard.general.setString(csv, forType: .string)
         
         XCTAssertEqual(4.1, (-9.9).wrapped(within: 3..<5), accuracy: 0.001)
         XCTAssertEqual(4.2, (-9.8).wrapped(within: 3..<5), accuracy: 0.001)
