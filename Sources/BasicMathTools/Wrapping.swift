@@ -29,6 +29,10 @@ public protocol Wrappable: Comparable {
     /// print(8.wrapped(within: 3..<6)) // 5
     /// ```
     ///
+    /// Here's a visual example wrapping floating-point values within `3..<5`:
+    ///
+    /// ![a](https://i.imgur.com/a8V6kta.png)
+    ///
     /// - Parameters:
     ///   - range: The range of lowest (inclusive) & highest (exclusive) possible return values.
     ///            The returned value will wrap (loop) within this range
@@ -127,7 +131,9 @@ extension UInt64: Wrappable {}
 
 extension Float32: Wrappable {}
 extension Float64: Wrappable {}
+#if os(macOS) && arch(x86_64)
 extension Float80: Wrappable {}
+#endif
 extension CGFloat: Wrappable {}
 
 public extension Wrappable where Self: FloatingPoint {
