@@ -12,9 +12,10 @@ import Foundation
 public extension Sequence where Element: AdditiveArithmetic {
     
     /// Reduces this collection to a single value, assuming the result should be of the same type as each element, and that the starting value for reduction is `.zero`
+    ///
     /// - Parameters:
     ///   - reducer: Processes each element and reduces this collection to a single value
-    ///    - result: The running result of reduction
+    ///    - result: The running result of reduction (starts with `.zero`)
     ///    - each: Each element of the sequence
     ///
     /// - Returns: The whole collection, reduced down to a single value
@@ -23,7 +24,7 @@ public extension Sequence where Element: AdditiveArithmetic {
     }
     
     
-    /// Calculates the sum of all elements in this sequence, through addition, assuming a starting point of `.zero`
+    /// Returns the sum of all elements in this sequence
     func sum() -> Element {
         reduce(+=)
     }
