@@ -82,3 +82,28 @@ print( 0.clamping(within: 2...7)) // Prints 2
 print( 5.clamping(within: 2...7)) // Prints 5
 print(99.clamping(within: 2...7)) // Prints 7
 ```
+
+
+
+# Additive Reduction #
+
+This introduces a `.reduce(_:)` function to sequences whose elements conform to `AdditiveArithmetic` which assumes you're reducing into `.zero`:
+
+```swift
+// Before
+bunchaNumbers.reduce(into: 0) { $0 = max($0, $1) }
+
+// After
+bunchaNumbers.reduce { $0 = max($0, $1) }
+```
+
+
+This also adds a convenience function `.sum()`, build on this new reducer:
+
+```swift
+// Before
+bunchaNumbers.reduce(into: 0, +=)
+
+// After
+bunchaNumbers.sum()
+```
